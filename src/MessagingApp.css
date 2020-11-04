@@ -59,8 +59,9 @@ textarea {
 
 .sendMsgBtn:focus {
     /* background-color: transparent; */
-    background-color: rgb(243, 235, 199);
-    /* border: 1px blue solid; */
+
+    /* background-color: rgb(243, 235, 199); */
+
     border-bottom: 2px red solid;
 }
 
@@ -88,7 +89,9 @@ textarea {
 
 .viewMsgBtn:focus {
     /* background-color: transparent; */
-    background-color: rgb(243, 235, 199);
+
+    /* background-color: rgb(243, 235, 199); */
+
     border-bottom: 2px red solid;
 }
 
@@ -296,6 +299,8 @@ h3 {
     margin-top: 10px;
     margin-left: -5px;
     margin-bottom: 10px;
+    line-height: 160%;
+    /* line-height-step: 2; */
     /* justify-content: left; */
     overflow: auto;
 }
