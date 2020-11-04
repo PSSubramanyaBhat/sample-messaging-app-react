@@ -113,8 +113,10 @@ const ViewMessagePage = () => {
 
             <div class="messageDisplay">
                 <form>
-                    <label>Message Detail</label>
+                    <label class="Label">Message Detail</label>
                     <br></br>
+
+
                     {/* <textarea
                         type="text"
                         cols="35"
@@ -140,7 +142,7 @@ const ViewMessagePage = () => {
                 </form>
 
 
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <input class="CheckBox" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
 
                 </input>
                 <label for="messageRead"> mark message as read</label><br></br>
