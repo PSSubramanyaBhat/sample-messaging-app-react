@@ -100,7 +100,7 @@ const ViewMessagePage = () => {
     }
 
     return (
-        <div class="flexDisplay">
+        <div class="flexDisplay2">
             <div class="messageHistoryDisplay">
                 <ul>
                     <ul>
