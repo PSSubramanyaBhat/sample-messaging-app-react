@@ -65,7 +65,7 @@ const ViewMessagePage = () => {
     function renderOldMessages() {
         if (dispMsg === null) {
             return (
-                <h4>There are no messages to show</h4>
+                <h4 class="NoMessage">There are no messages to show</h4>
             );
         } else {
             return dispMsg.map((b, index) => (
