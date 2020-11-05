@@ -70,6 +70,7 @@ const ViewMessagePage = () => {
         } else {
             return dispMsg.map((b, index) => (
                 <li key={index}>
+                    <h6>New</h6>
                     <div class="MessageContent">
                         <div class="MessageHistoryNumber"
                             onClick={() => {

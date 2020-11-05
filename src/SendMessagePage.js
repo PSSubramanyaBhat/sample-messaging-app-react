@@ -126,7 +126,8 @@ const SendMessagePage = () => {
         return (
             <div class="padScreenLeft">
 
-                <h3>Want to Send another message?</h3>
+                {/* <h3>Want to Send another message?</h3> */}
+                <div class="AlertMessage">Want to Send another message?</div>
 
                 <button class="SendAnotherMessageButton"
                         selected={false}
