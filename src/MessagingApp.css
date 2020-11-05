@@ -12,8 +12,27 @@ body {
     /* background-image: linear-gradient(to bottom right, red, yellow); */
 }
 
-h6 {
+/* h6 {
     background-color: rgb(236, 46, 46);
+    color: white;
+    width: 30px;
+    padding-left: 5px;
+    border-radius: 5px;
+} */
+
+.NewMessage {
+    /* background-color: rgb(236, 46, 46); */
+    background-color: rgb(128, 46, 236);
+    color: white;
+    width: 30px;
+    padding-left: 5px;
+    border-radius: 5px;
+    /* margin-left: 30px; */
+}
+
+.ReadMessage {
+    /* background-color: rgb(236, 46, 46); */
+    background-color: #fff;
     color: white;
     width: 30px;
     padding-left: 5px;
@@ -420,6 +439,7 @@ h3 {
         width: 180px;
         height: 66px;
         border-color: rgb(219, 229, 236);
+        border-left: 3px solid rgb(20, 147, 221);
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-size: 12px;
         font-weight: 800;

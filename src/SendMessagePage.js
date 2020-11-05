@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MessagingApp.css';
 import { readFromStorage, writeToStorage } from './LocalStorage';
 
@@ -7,6 +7,7 @@ const MESSAGE_BODY = 'messageBody';
 const MESSAGE_NUMBER = 'message_number';
 const MESSAGE = 'message';
 const SENT = 'sent';
+const READ_STATUS = 'readStatus';
 
 
 const SendMessagePage = () => {
@@ -19,12 +20,29 @@ const SendMessagePage = () => {
 
 
     const [title, setTitle] = useState(() => readFromStorage(MESSAGE_TITLE) || '');
-    const [messageBody, setMessageBody] = useState(() => readFromStorage(MESSAGE_BODY) || '');
+
+    const [messageBody, setMessageBody] = useState(() => readFromStorage(MESSAGE_BODY) || ''); //PARTIALLY WORKING......
+    // const [messageBody, setMessageBody] = useState(() => readFromStorage(MESSAGE_BODY) || []); //TRYING......
 
 
     const [msgTitle, setMessageTitleArray] = useState(() => readFromStorage(MESSAGE) || []);
 
     const [msgBody, setMessageBodyArray] = useState(() => readFromStorage(MESSAGE) || []);
+
+    const [readMessage, setReadMessage] = useState(() => readFromStorage(READ_STATUS) || []);
+
+
+    useEffect(()=> {
+        // writeToStorage(MESSAGE_BODY, msgBody); //PARTIALLY WORKING......
+        if (msgBody!==[]) {
+            // writeToStorage(MESSAGE_BODY, msgBody); //PARTIALLY WORKING......
+            writeToStorage(MESSAGE_TITLE, msgTitle);
+            writeToStorage(MESSAGE, msgBody); //PARTIALLY WORKING......
+            writeToStorage(READ_STATUS, readMessage); //PARTIALLY WORKING......
+        }
+        console.log(msgBody);
+    },[msgBody, msgTitle, readMessage]);
+
 
     function saveMessageTitle(message_Title) {
 
@@ -37,27 +55,17 @@ const SendMessagePage = () => {
 
     function saveMessageDescription(message_Body) {
         setMessageBodyArray([...msgBody, message_Body]);
-        writeToStorage(MESSAGE_BODY, msgBody);
+        // writeToStorage(MESSAGE_BODY, msgBody); //PARTIALLY WORKING......
+        writeToStorage(MESSAGE, msgBody); //TRYING......
+
+        setReadMessage([...readMessage, 'unread']);
+        writeToStorage(READ_STATUS, readMessage); //PARTIALLY WORKING......
+
         console.log(msgBody);
     }
 
-    // const goToMessage = (messageNumber) => {
-    //     // setMessageNumber(messageNumber);
-    // };
-
-    // function renderOldMessages() {
-    //     return msgBody.map((b, index) => (
-    //         <li key={index}>
-    //             <button class="MessageHistoryButton"
-    //                 onClick={() => {
-    //                     goToMessage(index);
-    //                 }}
-    //             >
-    //                 {`Message ${index}`}
-    //             </button>
-    //         </li>
-    //     ));
-    // }
+    
+    
 
     if (sent === 0) {
         return (
@@ -108,7 +116,8 @@ const SendMessagePage = () => {
                             saveMessageTitle(title);
                             // saveMessageDescription
 
-                            saveMessageDescription(messageBody);
+                            saveMessageDescription(messageBody);// WORKING......
+                            // saveMessageDescription(currentMessageBody);
                             writeToStorage(MESSAGE_NUMBER, messageNumber + 1);
                             
                             setSentMessageFlag(1)
