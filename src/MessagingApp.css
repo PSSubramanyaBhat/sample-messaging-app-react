@@ -287,8 +287,10 @@ h3 {
         background-color: #fff;
         border:  2px solid rgb(87, 174, 236);
         margin-left: 3px;
+        /* margin-left: 145px; */
         margin-right: 60px;
         margin-top: 30px;
+        /* margin-top: 230px; */
         padding-top: -30px;
         padding-bottom: 30px;
         padding-left: -30px;
