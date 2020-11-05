@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './MessagingApp.css';
-import SendMessagePage from './SendMessagePage';
 
 import cn from 'classnames';
 
@@ -9,7 +8,6 @@ import { readFromStorage, writeToStorage } from './LocalStorage';
 
 const DISPLAY_MESSAGE = 'displayMessage'
 const READ_STATUS = 'readStatus';
-// const SELECTED_MESSAGE = 'selectedMessage'
 const MESSAGE_NUMBER = 'message_number';
 const CHECKBOX = 'checkbox';
 
@@ -18,21 +16,13 @@ const ViewMessagePage = () => {
 
 
     const [selectedMessage, setSelectedMessage] = useState('');
-    const dispMsg = JSON.parse(localStorage.getItem('message'));   //TRYING......
-
-
-
-
-    const displayingMsg = JSON.parse(localStorage.getItem('displayMessage'));
-    // const [displayed, setDisplayedState] = useState(() => readFromStorage(DISPLAYED) || 0);
-
+    const dispMsg = JSON.parse(localStorage.getItem('message'));
 
     const [readMessage, setReadMessage] = useState(() => readFromStorage(READ_STATUS) || []);
 
     const [highlightMessage, setHighlightMessage] = useState(() => readFromStorage(MESSAGE_NUMBER) || 0);
 
     const [checkStatus, setCheckBox] = useState(() => readFromStorage(CHECKBOX) || false);
-    // const [checkStatus, setCheckBox] = useState(() => readFromStorage(CHECKBOX) || false);
 
 
 
@@ -57,7 +47,7 @@ const ViewMessagePage = () => {
 
 
 
-    
+
     function renderOldMessages() {
         if (dispMsg.length === 0 || dispMsg === null) {
             return (
@@ -72,7 +62,6 @@ const ViewMessagePage = () => {
                             onClick={() => {
                                 goToMessage(index);
                                 setSelectedMessage(dispMsg[index]);
-
                                 writeToStorage(DISPLAY_MESSAGE, dispMsg[index]);
                             }}
                         >
@@ -82,18 +71,9 @@ const ViewMessagePage = () => {
                             onClick={() => {
                                 goToMessage(index);
                                 setSelectedMessage(dispMsg[index]);
-
                                 writeToStorage(DISPLAY_MESSAGE, dispMsg[index]);
-
-
                                 readMessage[index] = 'read';
-
-                                // console.log(readMessage[index]);
-
-                                // console.log(readMessage);
-
                                 setReadMessage(readMessage);
-                                // writeToStorage(READ_STATUS, readMessage); //PARTIALLY WORKING......
                             }}
                         >
                             {dispMsg[index]}
@@ -110,10 +90,8 @@ const ViewMessagePage = () => {
                 <ul>
                     <ul>
                         <ol class="History">{renderOldMessages()}</ol>
-                        {/* <ol class="History">{renderMessageNumber()}</ol> */}
                     </ul>
                 </ul>
-
             </div>
 
             <div class="messageDisplay">
@@ -135,7 +113,6 @@ const ViewMessagePage = () => {
                     name="vehicle1"
                     value="Bike"
                     checked={checkStatus}
-                    // checked={readMessage[highlightMessage]==='read'}
                     onClick={() => {
                         console.log("YUVRAJ SINGH......");
                         console.log(highlightMessage);
