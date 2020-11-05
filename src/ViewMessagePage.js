@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './MessagingApp.css';
 import SendMessagePage from './SendMessagePage';
 
-// import cn from 'classnames';
+import cn from 'classnames';
 
 import { readFromStorage, writeToStorage } from './LocalStorage';
 
 
 const DISPLAY_MESSAGE = 'displayMessage'
-// const DISPLAYED = 'displayed';
-// const READ_STATUS = 'readStatus';
 const READ_STATUS = 'readStatus';
 
 
@@ -17,10 +15,6 @@ const ViewMessagePage = () => {
 
 
     const [selectedMessage, setSelectedMessage] = useState('');
-    // const [selectedMessage, setSelectedMessage] = useState(() => readFromStorage(DISPLAY_MESSAGE) || '');
-
-
-    // const dispMsg = JSON.parse(localStorage.getItem('messageBody')); //PARTIALLY WORKING......
     const dispMsg = JSON.parse(localStorage.getItem('message'));   //TRYING......
 
 
@@ -50,7 +44,9 @@ const ViewMessagePage = () => {
         } else {
             return dispMsg.map((b, index) => (
                 <li key={index}>
-                    <h6 class="NewMessage">New</h6>
+                {/* cn('NewMessage', { ReadMessage: readStatus[index]==='read' }) */}
+                    {/* <h6 class="NewMessage">New</h6> */}
+                    <h6 class={cn('NewMessage', { ReadMessage: readMessage[index]==='read' })}>New</h6>
                     <div class="MessageContent">
                         <div class="MessageHistoryNumber"
                             onClick={() => {
