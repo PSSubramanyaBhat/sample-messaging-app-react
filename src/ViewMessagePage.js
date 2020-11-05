@@ -9,6 +9,8 @@ import { readFromStorage, writeToStorage } from './LocalStorage';
 
 const DISPLAY_MESSAGE = 'displayMessage'
 const READ_STATUS = 'readStatus';
+// const SELECTED_MESSAGE = 'selectedMessage'
+const MESSAGE_NUMBER = 'message_number';
 
 
 const ViewMessagePage = () => {
@@ -26,10 +28,21 @@ const ViewMessagePage = () => {
 
     const [readMessage, setReadMessage] = useState(() => readFromStorage(READ_STATUS) || []);
 
+    const [highlightMessage, setHighlightMessage] = useState(() => readFromStorage(MESSAGE_NUMBER) || 0);
+
+
+
     const goToMessage = (messageNumber) => {
         console.log(dispMsg[messageNumber]);
+        // setStep(step);
+        setHighlightMessage(messageNumber);
+        // console.log(highlightMessage);
         return dispMsg[messageNumber];
     };
+
+    // const jumpToState = (step) => {
+    //     setStep(step);
+    // };
 
     useEffect(() => {
         writeToStorage(READ_STATUS, readMessage);
@@ -44,8 +57,6 @@ const ViewMessagePage = () => {
         } else {
             return dispMsg.map((b, index) => (
                 <li key={index}>
-                {/* cn('NewMessage', { ReadMessage: readStatus[index]==='read' }) */}
-                    {/* <h6 class="NewMessage">New</h6> */}
                     <h6 class={cn('NewMessage', { ReadMessage: readMessage[index]==='read' })}>New</h6>
                     <div class="MessageContent">
                         <div class="MessageHistoryNumber"
@@ -58,7 +69,7 @@ const ViewMessagePage = () => {
                         >
                             {`Message ${index + 1}`}
                         </div>
-                        <button class="MessageHistoryButton"
+                        <button class={cn('MessageHistoryButton', { MessageHistoryButtonSelected: index === highlightMessage })}
                             onClick={() => {
                                 goToMessage(index);
                                 setSelectedMessage(dispMsg[index]);
