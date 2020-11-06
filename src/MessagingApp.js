@@ -32,7 +32,7 @@ const MessagingApp = () => {
         );
     } else {
         return (
-            <div class="BackgroundLayout">
+            <div class="BackgroundLayout2">
                 <div class="flexDisplay">
                     <button class="sendMsgBtn"
                         onClick={() => {
