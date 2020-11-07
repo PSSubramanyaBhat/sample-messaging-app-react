@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './MessagingApp.css';
+// import './TabletViewStyling.css';
+import './LaptopView.css';
+// import './MediumMobile.css';
+
 import cn from 'classnames';
 
 import SendMessagePage from './SendMessagePage';

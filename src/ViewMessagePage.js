@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './MessagingApp.css';
+// import './TabletViewStyling.css';
+import './LaptopView.css';
+// import './MediumMobile.css';
 
 import cn from 'classnames';
 
@@ -124,7 +127,7 @@ const ViewMessagePage = () => {
                 >
 
                 </input>
-                <label for="messageRead"> mark message as unread</label><br></br>
+                <label class="Label2" for="messageRead"> mark message as unread</label><br></br>
 
                 <button class="DeleteMessageButton"
                     selected={false}

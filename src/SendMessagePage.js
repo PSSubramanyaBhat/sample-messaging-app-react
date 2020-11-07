@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './MessagingApp.css';
+// import './TabletViewStyling.css';
+import './LaptopView.css';
+// import './MediumMobile.css';
+
 import { readFromStorage, writeToStorage } from './LocalStorage';
 
 const MESSAGE_TITLE = 'messageTitle';
@@ -69,8 +73,9 @@ const SendMessagePage = () => {
                         <br></br>
                         <textarea
                             type="text"
-                            cols="40"
+                            cols="60"
                             rows="2"
+                            // class="Title"
                             placeholder="Write a brief description here"
                             onChange={(event) => {
                                 let currentDescription = event.target.value;
@@ -85,8 +90,9 @@ const SendMessagePage = () => {
                         <br></br>
                         <textarea
                             type="text"
-                            cols="40"
+                            cols="60"
                             rows="10"
+                            // class="MessageDetails"
                             placeholder="Write your Message body here"
                             onChange={(event) => {
                                 let currentMessageBody = event.target.value;
