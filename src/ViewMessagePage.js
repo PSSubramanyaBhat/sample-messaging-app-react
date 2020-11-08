@@ -13,6 +13,10 @@ const DISPLAY_MESSAGE = 'displayMessage'
 const READ_STATUS = 'readStatus';
 const MESSAGE_NUMBER = 'message_number';
 const CHECKBOX = 'checkbox';
+const MESSAGE = 'message';
+const MESSAGE_TITLE = 'messageTitle';
+const MESSAGE_TITLE_ARRAY = 'messageTitleArray';
+const POST_DELETED = 'postDeleted';
 
 
 const ViewMessagePage = () => {
@@ -20,12 +24,20 @@ const ViewMessagePage = () => {
 
     const [selectedMessage, setSelectedMessage] = useState('');
     const dispMsg = JSON.parse(localStorage.getItem('message'));
+    // const dispMsgTitle = JSON.parse(localStorage.getItem('messageTitle'));
+    const dispMsgTitle = JSON.parse(localStorage.getItem('messageTitleArray'));
+    const dispMsgReadStatus = JSON.parse(localStorage.getItem('readStatus'));
 
     const [readMessage, setReadMessage] = useState(() => readFromStorage(READ_STATUS) || []);
 
     const [highlightMessage, setHighlightMessage] = useState(() => readFromStorage(MESSAGE_NUMBER) || 0);
 
     const [checkStatus, setCheckBox] = useState(() => readFromStorage(CHECKBOX) || false);
+
+    const [postDeletedArray, setPostDeletedArray] = useState(() => readFromStorage(POST_DELETED) || []);
+    
+    // const [postDeletedTitle, setPostDeletedTitle] = useState(() => readFromStorage(POST_DELETED) || []);
+    // const [postDeletedReadStatus, setPostDeletedArray] = useState(() => readFromStorage(POST_DELETED) || []);
 
 
 
@@ -38,6 +50,8 @@ const ViewMessagePage = () => {
     useEffect(() => {
         writeToStorage(READ_STATUS, readMessage);
         writeToStorage(CHECKBOX, checkStatus);
+        // writeToStorage(MESSAGE, msgBody);
+        writeToStorage(POST_DELETED, postDeletedArray);
     });
 
     useEffect(() => {
@@ -132,7 +146,51 @@ const ViewMessagePage = () => {
                 <button class="DeleteMessageButton"
                     selected={false}
                     onClick={() => {
+                        let deleteMsg = [...dispMsg];
+                        let deleteArray = [...deleteMsg];
+                        
 
+                        let deleteMsgTitle = [...dispMsgTitle];
+                        let deleteTitleArray = [...deleteMsgTitle];
+
+
+                        // let deleteReadStatus = [...readMessage]; //dispMsgReadStatus
+                        let deleteReadStatus = [...dispMsgReadStatus];
+                        // console.log("READ");
+                        // console.log(deleteReadStatus);
+                        let deleteReadStatusArray = [...deleteReadStatus];
+                        // console.log("READ_DUPLICATE");
+                        // console.log(deleteReadStatusArray);
+                        
+
+                        deleteArray.splice(highlightMessage, 1);
+                        deleteTitleArray.splice(highlightMessage, 1);
+                        deleteReadStatusArray.splice(highlightMessage, 1);
+
+                        console.log("READ_DUPLICATE_ARRAY");
+                        console.log(deleteReadStatusArray);
+
+                        deleteMsg = [...deleteArray];
+                        deleteMsgTitle = [...deleteTitleArray];
+                        deleteReadStatus = [...deleteReadStatusArray];
+
+                        console.log("READ_DUPLICATE_ARRAY_BENKI");
+                        console.log(deleteReadStatus);
+
+
+                        setPostDeletedArray(deleteMsg);
+                        writeToStorage(POST_DELETED, postDeletedArray);
+
+
+                        writeToStorage(MESSAGE, deleteMsg);
+                        // writeToStorage(MESSAGE_TITLE, deleteMsgTitle);
+                        writeToStorage(MESSAGE_TITLE_ARRAY, deleteMsgTitle);
+                        // writeToStorage(READ_STATUS, deleteReadStatus);
+                        // setReadMessage(readMessage);
+                        setReadMessage(deleteReadStatus);
+
+                        setSelectedMessage('');
+                        
                     }}
                 >
                     Delete

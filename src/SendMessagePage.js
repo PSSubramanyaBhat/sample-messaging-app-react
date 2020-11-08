@@ -10,6 +10,7 @@ const MESSAGE_TITLE = 'messageTitle';
 const MESSAGE_BODY = 'messageBody';
 const MESSAGE_NUMBER = 'message_number';
 const MESSAGE = 'message';
+const MESSAGE_TITLE_ARRAY = 'messageTitleArray';
 const SENT = 'sent';
 const READ_STATUS = 'readStatus';
 
@@ -25,7 +26,7 @@ const SendMessagePage = () => {
     const [messageBody, setMessageBody] = useState(() => readFromStorage(MESSAGE_BODY) || '');
 
 
-    const [msgTitle, setMessageTitleArray] = useState(() => readFromStorage(MESSAGE) || []);
+    const [msgTitle, setMessageTitleArray] = useState(() => readFromStorage(MESSAGE_TITLE_ARRAY) || []);
 
     const [msgBody, setMessageBodyArray] = useState(() => readFromStorage(MESSAGE) || []);
 
@@ -34,7 +35,8 @@ const SendMessagePage = () => {
 
     useEffect(()=> {
         if (msgBody!==[]) {
-            writeToStorage(MESSAGE_TITLE, msgTitle);
+            // writeToStorage(MESSAGE_TITLE, msgTitle);
+            writeToStorage(MESSAGE_TITLE_ARRAY, msgTitle);
             writeToStorage(MESSAGE, msgBody);
             writeToStorage(READ_STATUS, readMessage);
         }
@@ -45,7 +47,8 @@ const SendMessagePage = () => {
     function saveMessageTitle(message_Title) {
 
         setMessageTitleArray([...msgTitle, message_Title]);
-        writeToStorage(MESSAGE_TITLE, msgTitle);
+        // writeToStorage(MESSAGE_TITLE, msgTitle);
+        writeToStorage(MESSAGE_TITLE_ARRAY, msgTitle);
         console.log(msgTitle);
 
     }
